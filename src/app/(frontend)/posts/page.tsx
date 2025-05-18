@@ -1,36 +1,34 @@
 import Image from 'next/image'
 import lokeshimg from '../../../../media/Lokesh2.jpeg'
 
-async function getPosts() {
-  try {
-    const res = await fetch('http://localhost:3000/api/posts')
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
-
-    const data = await res.json()
-    // console.log('Fetched posts:', data)
-
-    return data?.docs || []
-  } catch (error) {
-    console.error('Error fetching posts:', error)
-    return []
-  }
-}
+import { getPayload } from 'payload'
+import React from 'react'
+import config from '@/payload.config'
 
 export default async function PostsPage() {
-  const posts = await getPosts()
+  const payloadConfig = await config
+  const payload = await getPayload({ config: payloadConfig })
+
+  const posts = await payload.find({ collection: 'posts', limit: 100 })
 
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">All Posts</h1>
 
-      {posts.length > 0 ? (
-        posts.map((post: any) => (
+      {posts?.docs?.length > 0 ? (
+        posts.docs.map((post: any) => (
           <div key={post.id} className="mb-4 border p-4 rounded shadow">
             <h2 className="text-xl font-semibold">{post.title}</h2>
             <p>{post.content}</p>
+            {post.featuredImage && (
+              <Image
+                src={post.featuredImage.url}
+                alt={post.title}
+                width={200}
+                height={200}
+                className="w-full h-auto mb-2 rounded"
+              />
+            )}
           </div>
         ))
       ) : (
