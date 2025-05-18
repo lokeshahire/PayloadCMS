@@ -39,8 +39,8 @@ export default async function PostsPage() {
       <Image
         src={lokeshimg}
         alt="Lokesh"
-        width={500}
-        height={500}
+        width={200}
+        height={200}
         className="w-full h-auto mb-2 rounded"
       />
     </div>

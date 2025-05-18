@@ -6,7 +6,7 @@ const Posts: CollectionConfig = {
     useAsTitle: 'title',
   },
   access: {
-    read: () => true, // 👈 anyone can read
+    read: () => true,
   },
   fields: [
     {
@@ -22,7 +22,7 @@ const Posts: CollectionConfig = {
       name: 'featuredImage',
       label: 'Featured Image',
       type: 'upload',
-      relationTo: 'media', // 👈 relation to media collection
+      relationTo: 'media',
     },
   ],
 }
