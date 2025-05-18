@@ -13,7 +13,7 @@ export default async function PostsPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">All Posts</h1>
+      <h1 className="text-2xl font-bold mb-4 text-red-600">All Posts</h1>
 
       {posts?.docs?.length > 0 ? (
         posts.docs.map((post: any) => (

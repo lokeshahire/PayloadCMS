@@ -10,11 +10,24 @@ export default async function TodoPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">All Todos</h1>
+      <h1 className="text-2xl font-bold mb-4  text-red-600" style={{ textAlign: 'center' }}>
+        All Todos
+      </h1>
 
       {todos?.docs?.length > 0 ? (
         todos.docs.map((todo: any) => (
-          <div key={todo.id} className="mb-4 border p-4 rounded shadow">
+          <div
+            key={todo.id}
+            className="mb-4 border p-4 rounded shadow"
+            style={{
+              border: '1px solid #ccc',
+              padding: '10px',
+              borderRadius: '5px',
+              width: '50%',
+              margin: '0 auto',
+              marginBottom: '10px',
+            }}
+          >
             <h2 className="text-xl font-semibold">{todo.title}</h2>
             <p>{todo.description}</p>
           </div>
