@@ -7,6 +7,17 @@
  */
 
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardSlider".
+ */
+export type CardSlider =
+  | {
+      title?: string | null;
+      caption?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+/**
  * Supported timezones in IANA format.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -71,6 +82,7 @@ export interface Config {
     media: Media;
     posts: Post;
     todos: Todo;
+    extra: Extra;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +93,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     todos: TodosSelect<false> | TodosSelect<true>;
+    extra: ExtraSelect<false> | ExtraSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -179,6 +192,90 @@ export interface Todo {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "extra".
+ */
+export interface Extra {
+  id: string;
+  title: string;
+  description: string;
+  enableCoolStuff?: boolean | null;
+  image: string | Media;
+  'slider '?: CardSlider;
+  notes?: string | null;
+  category?: ('personal' | 'work' | 'other') | null;
+  JSON:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  Code: string;
+  dateOnly?: string | null;
+  timeOnly?: string | null;
+  monthOnly?: string | null;
+  contact: string;
+  age: number;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  location?: [number, number] | null;
+  color?: ('mint' | 'dark_gray') | null;
+  'label(ROW)': string;
+  value: string;
+  someTextField: string;
+  tabTwo: TabTwo;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  'layout (Block)'?: QuoteBlock[] | null;
+  'pageMeta (Group)': Meta;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabTwo".
+ */
+export interface TabTwo {
+  numberField: number;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteBlock".
+ */
+export interface QuoteBlock {
+  quoteHeader: string;
+  quoteText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'Quote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Meta".
+ */
+export interface Meta {
+  title: string;
+  description: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -199,6 +296,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'todos';
         value: string | Todo;
+      } | null)
+    | ({
+        relationTo: 'extra';
+        value: string | Extra;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -296,6 +397,75 @@ export interface TodosSelect<T extends boolean = true> {
   description?: T;
   createdAt?: T;
   updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "extra_select".
+ */
+export interface ExtraSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  enableCoolStuff?: T;
+  image?: T;
+  'slider '?: T | CardSliderSelect<T>;
+  notes?: T;
+  category?: T;
+  JSON?: T;
+  Code?: T;
+  dateOnly?: T;
+  timeOnly?: T;
+  monthOnly?: T;
+  contact?: T;
+  age?: T;
+  location?: T;
+  color?: T;
+  'label(ROW)'?: T;
+  value?: T;
+  someTextField?: T;
+  tabTwo?: T | TabTwoSelect<T>;
+  richText?: T;
+  'layout (Block)'?:
+    | T
+    | {
+        Quote?: T | QuoteBlockSelect<T>;
+      };
+  'pageMeta (Group)'?: T | MetaSelect<T>;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardSlider_select".
+ */
+export interface CardSliderSelect<T extends boolean = true> {
+  title?: T;
+  caption?: T;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TabTwo_select".
+ */
+export interface TabTwoSelect<T extends boolean = true> {
+  numberField?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteBlock_select".
+ */
+export interface QuoteBlockSelect<T extends boolean = true> {
+  quoteHeader?: T;
+  quoteText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Meta_select".
+ */
+export interface MetaSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
