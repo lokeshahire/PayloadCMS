@@ -197,9 +197,9 @@ export interface Todo {
 export interface Extra {
   id: string;
   title: string;
-  description: string;
+  'description (textarea)': string;
   enableCoolStuff?: boolean | null;
-  image: string | Media;
+  'image (upload)': string | Media;
   'slider '?: CardSlider;
   notes?: string | null;
   category?: ('personal' | 'work' | 'other') | null;
@@ -223,7 +223,7 @@ export interface Extra {
    * @maxItems 2
    */
   location?: [number, number] | null;
-  color?: ('mint' | 'dark_gray') | null;
+  'color (radio)'?: ('mint' | 'dark_gray') | null;
   'label(ROW)': string;
   value: string;
   someTextField: string;
@@ -404,9 +404,9 @@ export interface TodosSelect<T extends boolean = true> {
  */
 export interface ExtraSelect<T extends boolean = true> {
   title?: T;
-  description?: T;
+  'description (textarea)'?: T;
   enableCoolStuff?: T;
-  image?: T;
+  'image (upload)'?: T;
   'slider '?: T | CardSliderSelect<T>;
   notes?: T;
   category?: T;
@@ -418,7 +418,7 @@ export interface ExtraSelect<T extends boolean = true> {
   contact?: T;
   age?: T;
   location?: T;
-  color?: T;
+  'color (radio)'?: T;
   'label(ROW)'?: T;
   value?: T;
   someTextField?: T;

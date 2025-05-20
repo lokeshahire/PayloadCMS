@@ -1,6 +1,6 @@
 import type { CollectionConfig, Block } from 'payload'
 
-//  select, text, textarea, checkbox, upload, array, collapsible, JSON, code, date, email, number, point, radio, row, tab, richText, blocks, group
+//  select, text, textarea, checkbox, upload, relationTo, array, "collapsible", JSON, code, date, email, number, point, radio, "row", "tab", richText, blocks, "group"
 
 const QuoteBlock: Block = {
   slug: 'Quote',
@@ -41,7 +41,7 @@ const Extra: CollectionConfig = {
 
     // textarea
     {
-      name: 'description',
+      name: 'description (textarea)',
       type: 'textarea',
       required: true,
     },
@@ -50,13 +50,13 @@ const Extra: CollectionConfig = {
     {
       name: 'enableCoolStuff',
       type: 'checkbox',
-      label: 'I am Checkbox',
+      label: 'I am Checkbox (checkbox)',
       defaultValue: false,
     },
 
     // upload
     {
-      name: 'image',
+      name: 'image (upload)',
       type: 'upload',
       relationTo: 'media',
       required: true,
@@ -165,7 +165,7 @@ const Extra: CollectionConfig = {
     {
       name: 'contact',
       type: 'email',
-      label: 'Contact Email Address',
+      label: 'Email Address',
       required: true,
     },
 
@@ -188,7 +188,7 @@ const Extra: CollectionConfig = {
 
     // radio
     {
-      name: 'color',
+      name: 'color (radio)',
       type: 'radio',
       options: [
         {
