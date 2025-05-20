@@ -60,6 +60,7 @@ const Extra: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+      admin: { position: 'sidebar' },
     },
 
     // array
@@ -138,6 +139,7 @@ const Extra: CollectionConfig = {
           pickerAppearance: 'dayOnly',
           displayFormat: 'd MMM yyy',
         },
+        position: 'sidebar',
       },
     },
     {
@@ -148,6 +150,7 @@ const Extra: CollectionConfig = {
           pickerAppearance: 'timeOnly',
           displayFormat: 'h:mm:ss a',
         },
+        position: 'sidebar',
       },
     },
     {
@@ -158,6 +161,7 @@ const Extra: CollectionConfig = {
           pickerAppearance: 'monthOnly',
           displayFormat: 'MMMM yyyy',
         },
+        position: 'sidebar',
       },
     },
 

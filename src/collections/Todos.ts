@@ -18,6 +18,7 @@ export const Todos: CollectionConfig = {
       name: 'completed',
       type: 'checkbox',
       defaultValue: false,
+      admin: { position: 'sidebar' },
     },
     {
       name: 'description',
