@@ -2,6 +2,7 @@ import { getPayload } from 'payload'
 import React from 'react'
 import config from '@/payload.config'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 export default async function TodoPage() {
   const payloadConfig = await config
@@ -11,12 +12,10 @@ export default async function TodoPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4  text-red-600 text-center">All Todos</h1>
-      <Link
-        href="/add-todo"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition mx-auto mb-4 block w-1/2 text-center"
-      >
-        Add Todo
+      <h1 className="text-2xl font-bold mb-4  text-red-600 text-center">All Todos List</h1>
+
+      <Link href="/add-todo">
+        <Button className="text-center mx-0">Add Todos</Button>
       </Link>
 
       {todos?.docs?.length > 0 ? (
