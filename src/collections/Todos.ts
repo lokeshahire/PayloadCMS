@@ -33,4 +33,9 @@ export const Todos: CollectionConfig = {
       },
     },
   ],
+  // access: {
+  //   create: ({ req: { user } }) => !!user,
+  //   read: ({ req: { user } }) => !!user,
+  //   update: ({ req: { user } }) => !!user,
+  // },
 }

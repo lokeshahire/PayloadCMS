@@ -44,7 +44,7 @@ export default function AddTodoPage() {
 
   return (
     <div className="max-w-md mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Add New Todo</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">Add New Todo</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && <p className="text-red-500">{error}</p>}
 
@@ -81,7 +81,7 @@ export default function AddTodoPage() {
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-blue-600 text-white px-4 py-2 rounded w-full mx-auto"
           disabled={loading}
         >
           {loading ? 'Adding...' : 'Add Todo'}

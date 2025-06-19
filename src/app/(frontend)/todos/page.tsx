@@ -23,6 +23,9 @@ export default async function TodoPage() {
           <div key={todo.id} className="mb-4 border p-4 rounded shadow w-1/2 mx-auto">
             <h2 className="text-xl font-bold">{todo.title}</h2>
             <p>{todo.description}</p>
+            <button className="bg-red-600 text-white m-3 p-2 rounded">
+              {todo.isCompleted ? 'Completed' : 'Not Completed'}
+            </button>
           </div>
         ))
       ) : (
