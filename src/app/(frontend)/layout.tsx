@@ -10,6 +10,11 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
           <nav className="mt-4">
             <ul className="flex justify-center space-x-6">
               <li>
+                <Link href="/admin" className="text-green-600 hover:text-green-800 font-medium">
+                  Admin
+                </Link>
+              </li>
+              <li>
                 <Link href="/todos" className="text-green-600 hover:text-green-800 font-medium">
                   Todos
                 </Link>

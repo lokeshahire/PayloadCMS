@@ -20,7 +20,7 @@ export default async function PostsPage() {
           <div key={post.id} className="mb-4 border p-4 rounded shadow">
             <h2 className="text-xl font-semibold">{post.title}</h2>
             <p>{post.content}</p>
-            {post.featuredImage && (
+            {/* {post.featuredImage && (
               <Image
                 src={post.featuredImage.url}
                 alt={post.title}
@@ -28,19 +28,19 @@ export default async function PostsPage() {
                 height={200}
                 className="w-full h-auto mb-2 rounded"
               />
-            )}
+            )} */}
           </div>
         ))
       ) : (
         <p>No posts found.</p>
       )}
-      <Image
+      {/* <Image
         src={lokeshimg}
         alt="Lokesh"
         width={200}
         height={200}
         className="w-full h-auto mb-2 rounded"
-      />
+      /> */}
     </div>
   )
 }
