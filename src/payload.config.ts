@@ -13,6 +13,8 @@ import Posts from './collections/Posts'
 import { Todos } from './collections/Todos'
 import Extra from './collections/Extra'
 import { Blogs } from './collections/Blog'
+import Product from './collections/Product'
+import ProdSlug from './collections/ProdSlug'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Posts, Todos, Extra, Blogs],
+  collections: [Users, Media, Posts, Todos, Extra, Blogs, Product, ProdSlug],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

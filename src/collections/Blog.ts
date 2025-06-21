@@ -1,12 +1,48 @@
 import { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache'
 
 export const Blogs: CollectionConfig = {
   slug: 'blogs',
+  admin: {
+    useAsTitle: 'title',
+  },
+  defaultSort: '-updatedAt',
   access: {
     read: () => true,
-    create: () => true,
-    update: () => true,
-    delete: () => true,
+    create: ({ req }) => {
+      return req.user?.role === 'admin' || req.user?.role === 'super-admin'
+    },
+    update: ({ req }) => {
+      return req.user?.role === 'admin' || req.user?.role === 'super-admin'
+    },
+    delete: ({ req }) => {
+      return req.user?.role === 'admin' || req.user?.role === 'super-admin'
+    },
+  },
+  hooks: {
+    afterChange: [
+      async ({ doc, operation }) => {
+        // Clear cache when blog is created or updated
+        await revalidateTag('blogs')
+
+        // If you have individual blog pages, you might want to clear those too
+        // You can use the blog ID or slug if you have one
+        if (doc.id) {
+          await revalidateTag(`blog-${doc.id}`)
+        }
+      },
+    ],
+    afterDelete: [
+      async ({ doc }) => {
+        // Clear cache when blog is deleted
+        await revalidateTag('blogs')
+
+        // Clear individual blog cache if it exists
+        if (doc.id) {
+          await revalidateTag(`blog-${doc.id}`)
+        }
+      },
+    ],
   },
   fields: [
     {
@@ -27,16 +63,8 @@ export const Blogs: CollectionConfig = {
       },
       hooks: {
         beforeChange: [
-          ({ req, value }) => {
-            // If there's already a value, keep it
-            if (value) {
-              return value
-            }
-            // Otherwise, set to current user's email
-            if (req.user && req.user.email) {
-              return req.user.email
-            }
-            return undefined
+          ({ req }) => {
+            return req.user?.email
           },
         ],
       },
@@ -47,13 +75,7 @@ export const Blogs: CollectionConfig = {
       admin: {
         readOnly: true,
       },
-      hooks: {
-        beforeChange: [
-          () => {
-            return new Date().toISOString().split('T')[0]
-          },
-        ],
-      },
+      defaultValue: () => new Date().toISOString(),
     },
   ],
 }

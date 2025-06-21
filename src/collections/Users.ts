@@ -10,15 +10,15 @@ export const Users: CollectionConfig = {
     // Restrict who can create users
     create: ({ req }) => {
       const user = req.user
-      return user?.role === 'super-admin' || user?.role === 'admin'
+      return user?.role === 'admin'
     },
     update: ({ req }) => {
       const user = req.user
-      return user?.role === 'super-admin' || user?.role === 'admin'
+      return user?.role === 'admin'
     },
     delete: ({ req }) => {
       const user = req.user
-      return user?.role === 'super-admin'
+      return user?.role === 'admin'
     },
     read: () => true, // Everyone can read users
   },
@@ -34,16 +34,8 @@ export const Users: CollectionConfig = {
           value: 'super-admin',
         },
         {
-          label: 'Administrator',
+          label: 'Admin',
           value: 'admin',
-        },
-        {
-          label: 'Editor',
-          value: 'editor',
-        },
-        {
-          label: 'Support',
-          value: 'support',
         },
         {
           label: 'Viewer',
@@ -54,8 +46,8 @@ export const Users: CollectionConfig = {
         position: 'sidebar',
       },
       access: {
-        // Only super-admin or admin can change roles
-        update: ({ req }) => req.user?.role === 'super-admin' || req.user?.role === 'admin',
+        // Only admin can change roles
+        update: ({ req }) => req.user?.role === 'admin',
       },
     },
   ],

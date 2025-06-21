@@ -84,6 +84,8 @@ export interface Config {
     todos: Todo;
     extra: Extra;
     blogs: Blog;
+    product: Product;
+    prodslug: Prodslug;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -96,6 +98,8 @@ export interface Config {
     todos: TodosSelect<false> | TodosSelect<true>;
     extra: ExtraSelect<false> | ExtraSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
+    product: ProductSelect<false> | ProductSelect<true>;
+    prodslug: ProdslugSelect<false> | ProdslugSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -138,7 +142,7 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
-  role: 'super-admin' | 'admin' | 'editor' | 'support' | 'viewer';
+  role: 'super-admin' | 'admin' | 'viewer';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -291,6 +295,30 @@ export interface Blog {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product".
+ */
+export interface Product {
+  id: string;
+  title: string;
+  slug?: string | null;
+  subscription?: ('monthly' | 'yearly') | null;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "prodslug".
+ */
+export interface Prodslug {
+  id: string;
+  title: string;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -319,6 +347,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'blogs';
         value: string | Blog;
+      } | null)
+    | ({
+        relationTo: 'product';
+        value: string | Product;
+      } | null)
+    | ({
+        relationTo: 'prodslug';
+        value: string | Prodslug;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -495,6 +531,28 @@ export interface BlogsSelect<T extends boolean = true> {
   content?: T;
   author?: T;
   'publish date'?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product_select".
+ */
+export interface ProductSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  subscription?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "prodslug_select".
+ */
+export interface ProdslugSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
