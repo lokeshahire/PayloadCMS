@@ -86,6 +86,8 @@ export interface Config {
     blogs: Blog;
     product: Product;
     prodslug: Prodslug;
+    papers: Paper;
+    questions: Question;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -100,6 +102,8 @@ export interface Config {
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     product: ProductSelect<false> | ProductSelect<true>;
     prodslug: ProdslugSelect<false> | ProdslugSelect<true>;
+    papers: PapersSelect<false> | PapersSelect<true>;
+    questions: QuestionsSelect<false> | QuestionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -319,6 +323,27 @@ export interface Prodslug {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "papers".
+ */
+export interface Paper {
+  id: string;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "questions".
+ */
+export interface Question {
+  id: string;
+  title: string;
+  paper: string | Paper;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -355,6 +380,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'prodslug';
         value: string | Prodslug;
+      } | null)
+    | ({
+        relationTo: 'papers';
+        value: string | Paper;
+      } | null)
+    | ({
+        relationTo: 'questions';
+        value: string | Question;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -553,6 +586,25 @@ export interface ProductSelect<T extends boolean = true> {
 export interface ProdslugSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "papers_select".
+ */
+export interface PapersSelect<T extends boolean = true> {
+  title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "questions_select".
+ */
+export interface QuestionsSelect<T extends boolean = true> {
+  title?: T;
+  paper?: T;
   updatedAt?: T;
   createdAt?: T;
 }
