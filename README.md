@@ -52,6 +52,36 @@ See the [Collections](https://payloadcms.com/docs/configuration/collections) doc
 
   This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
 
+- #### User Queries
+
+  A collection for storing user-submitted queries and support requests. Features:
+
+  - Email field (pre-filled and read-only)
+  - Problem/Query title field
+  - Detailed description field
+  - Automatic timestamps (createdAt, updatedAt)
+  - Admin panel integration for viewing and managing queries
+
+### User Queries Feature
+
+The application includes a complete user query submission system:
+
+#### Frontend Pages:
+
+- **Contact Form** (`/contact`): Users can submit queries with pre-filled email
+- **Queries List** (`/queries`): View all submitted queries (for admin review)
+
+#### API Endpoints:
+
+- `POST /api/user-queries`: Submit a new user query
+- `GET /api/user-queries`: Retrieve all user queries
+
+#### Admin Panel:
+
+- Access via `/admin` to view and manage user queries
+- Queries are displayed with email, problem, description, and timestamps
+- Email field is read-only in the admin panel
+
 ### Docker
 
 Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:

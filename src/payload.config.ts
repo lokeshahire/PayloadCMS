@@ -17,6 +17,7 @@ import Product from './collections/Product'
 import ProdSlug from './collections/ProdSlug'
 import Paper from './collections/Paper'
 import Question from './collections/Question'
+import { UserQueries } from './collections/UserQueries'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -28,7 +29,19 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Posts, Todos, Extra, Blogs, Product, ProdSlug, Paper, Question],
+  collections: [
+    Users,
+    Media,
+    Posts,
+    Todos,
+    Extra,
+    Blogs,
+    Product,
+    ProdSlug,
+    Paper,
+    Question,
+    UserQueries,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -88,6 +88,7 @@ export interface Config {
     prodslug: Prodslug;
     papers: Paper;
     questions: Question;
+    'user-queries': UserQuery;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -104,6 +105,7 @@ export interface Config {
     prodslug: ProdslugSelect<false> | ProdslugSelect<true>;
     papers: PapersSelect<false> | PapersSelect<true>;
     questions: QuestionsSelect<false> | QuestionsSelect<true>;
+    'user-queries': UserQueriesSelect<false> | UserQueriesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -344,6 +346,27 @@ export interface Question {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "user-queries".
+ */
+export interface UserQuery {
+  id: string;
+  /**
+   * User email address (auto-filled)
+   */
+  email: string;
+  /**
+   * Brief description of the problem or query
+   */
+  problem: string;
+  /**
+   * Detailed description of the problem or query
+   */
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -388,6 +411,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'questions';
         value: string | Question;
+      } | null)
+    | ({
+        relationTo: 'user-queries';
+        value: string | UserQuery;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -605,6 +632,17 @@ export interface PapersSelect<T extends boolean = true> {
 export interface QuestionsSelect<T extends boolean = true> {
   title?: T;
   paper?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "user-queries_select".
+ */
+export interface UserQueriesSelect<T extends boolean = true> {
+  email?: T;
+  problem?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }

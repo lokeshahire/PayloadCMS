@@ -32,6 +32,11 @@ export default function NavBar() {
             Extra
           </Link>
         </li>
+        <li>
+          <Link href="/queries" className="text-green-600 hover:text-green-800 font-medium">
+            Queries
+          </Link>
+        </li>
       </ul>
     </nav>
   )
