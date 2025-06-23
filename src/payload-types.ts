@@ -93,7 +93,11 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    papers: {
+      join: 'questions';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -305,7 +309,14 @@ export interface Blog {
  */
 export interface Product {
   id: string;
+  /**
+   * Product title or name
+   */
   title: string;
+  /**
+   * Product price in dollars
+   */
+  price: number;
   slug?: string | null;
   subscription?: ('monthly' | 'yearly') | null;
   description?: string | null;
@@ -330,6 +341,11 @@ export interface Prodslug {
 export interface Paper {
   id: string;
   title: string;
+  join?: {
+    docs?: (string | Question)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -600,6 +616,7 @@ export interface BlogsSelect<T extends boolean = true> {
  */
 export interface ProductSelect<T extends boolean = true> {
   title?: T;
+  price?: T;
   slug?: T;
   subscription?: T;
   description?: T;
@@ -622,6 +639,7 @@ export interface ProdslugSelect<T extends boolean = true> {
  */
 export interface PapersSelect<T extends boolean = true> {
   title?: T;
+  join?: T;
   updatedAt?: T;
   createdAt?: T;
 }

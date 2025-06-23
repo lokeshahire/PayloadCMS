@@ -37,6 +37,11 @@ export default function NavBar() {
             Queries
           </Link>
         </li>
+        <li>
+          <Link href="/products" className="text-green-600 hover:text-green-800 font-medium">
+            Products
+          </Link>
+        </li>
       </ul>
     </nav>
   )

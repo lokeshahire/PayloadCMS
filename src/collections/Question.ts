@@ -15,7 +15,7 @@ const Question: CollectionConfig = {
     {
       name: 'paper',
       label: 'Related Paper',
-      type: 'relationship',
+      type: 'relationship', // one to many relationship   join with relationship
       relationTo: 'papers',
       required: true,
     },

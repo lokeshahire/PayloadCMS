@@ -12,6 +12,13 @@ const Paper: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'join',
+      type: 'join',
+      hasMany: true,
+      on: 'paper',
+      collection: 'questions',
+    },
   ],
 }
 
